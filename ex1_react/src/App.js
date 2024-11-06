@@ -1,54 +1,54 @@
-import "./App.css";
 import React, { useState } from "react";
 import TodoForm from "./components/TodoForm";
 import TodoListFilter from "./components/TodoListFilter";
 import Todo from "./components/Todo";
+import "./App.css";
 
 function App() {
-  const [todos, setTodos] = useState([]); // State to store todos
-  const [filter, setFilter] = useState("All"); // State to store current filter
+  const [todos, setTodos] = useState([]); //& State to store todos
+  const [filter, setFilter] = useState("All"); //& State to store current filter. Calling setFilter("All") (or any other value) will update the filter state variable with the new value.
 
   function addTodo(task) {
     const newTodo = { id: Date.now(), task, completed: false };
-    setTodos(function (prevTodos) {
-      return [...prevTodos, newTodo];
-    }); // Add new todo to list
+    setTodos((prevTodos) => prevTodos.concat(newTodo)); //& concat is to merge arrays (prevTodos+newTodo)
   }
 
   function toggleTodo(id) {
-    setTodos(function (prevTodos) {
-      return prevTodos.map(function (todo) {
-        return todo.id === id ? { ...todo, completed: !todo.completed } : todo;
-      });
-    });
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, completed: !todo.completed }; //& returns the object with the completed field changed
+        } else {
+          return todo;
+        }
+      })
+    );
   }
 
   function deleteTodo(id) {
-    setTodos(function (prevTodos) {
-      return prevTodos.filter(function (todo) {
-        return todo.id !== id;
-      });
-    }); // Remove todo
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id)); //& filters the array and only returns array
   }
 
   function editTodo(id, newTask) {
-    setTodos(function (prevTodos) {
-      return prevTodos.map(function (todo) {
-        return todo.id === id ? { ...todo, task: newTask } : todo;
-      });
-    });
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => {
+        if (todo.id === id) {
+          return Object.assign(todo, { task: newTask }); //& copies all enumerable own properties from one or more source objects to a target object. It returns the modified target object
+        } else {
+          return todo;
+        }
+      })
+    );
   }
 
   function getFilteredTodos() {
-    if (filter === "Active")
-      return todos.filter(function (todo) {
-        return !todo.completed;
-      });
-    if (filter === "Completed")
-      return todos.filter(function (todo) {
-        return todo.completed;
-      });
-    return todos; // For "All"
+    if (filter === "Active") {
+      return todos.filter((todo) => !todo.completed); //& filters array and returns only not completed
+    } else if (filter === "Completed") {
+      return todos.filter((todo) => todo.completed); //& filters array and returns only completed
+    } else {
+      return todos; //& For "All"
+    }
   }
 
   const filteredTodos = getFilteredTodos();

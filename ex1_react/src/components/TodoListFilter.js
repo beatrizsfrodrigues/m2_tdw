@@ -15,5 +15,6 @@ function TodoListFilter({ setFilter }) {
     </div>
   );
 }
+//& changes the values of filter when clicked button All/Active/Completed
 
 export default TodoListFilter;

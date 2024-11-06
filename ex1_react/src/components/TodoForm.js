@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function TodoForm({ addTodo }) {
-  const [task, setTask] = useState(""); // Input state
+  const [task, setTask] = useState("");
 
   function handleInput(e) {
     setTask(e.target.value);
@@ -11,7 +11,7 @@ function TodoForm({ addTodo }) {
     e.preventDefault();
     if (task.trim()) {
       addTodo(task);
-      setTask(""); // Clear input field
+      setTask(""); //& Clear input field
     }
   }
 
@@ -21,8 +21,8 @@ function TodoForm({ addTodo }) {
       <input
         className="input__lg"
         type="text"
-        value={task} //* to be able to empty input
-        onChange={handleInput} //* to be able to write on input
+        value={task} //& to be able to empty input
+        onChange={handleInput} //& to be able to write on input
       />
       <button className="btn btn__primary btn__lg" type="submit">
         Add

@@ -5,27 +5,28 @@ function Todo({ todo, toggleTodo, deleteTodo, editTodo }) {
   const [newTask, setNewTask] = useState(todo.task);
 
   function handleEditChange(e) {
-    setNewTask(e.target.value); // Update new task text
+    setNewTask(e.target.value); //& Update new task text
   }
 
   function handleEditSubmit(e) {
     e.preventDefault();
-    editTodo(todo.id, newTask); // Update todo with new task
-    setIsEditing(false); // Exit edit mode
+    editTodo(todo.id, newTask); //& Update todo with new task
+    setIsEditing(false); //& Exit edit mode
   }
 
   function toggleEditing() {
-    setIsEditing(true); // Enter edit mode
+    setIsEditing(true); //& Enter edit mode
   }
 
   function handleDelete() {
-    deleteTodo(todo.id); // Call delete function with todo ID
+    deleteTodo(todo.id); //& Call delete function with todo ID
   }
 
   function handleToggle() {
-    toggleTodo(todo.id); // Call toggle function with todo ID
+    toggleTodo(todo.id); //& Call toggle function with todo ID
   }
 
+  //* function to change label/input for when its in edit move vs not
   let editingContent;
   if (isEditing) {
     editingContent = (
@@ -34,7 +35,7 @@ function Todo({ todo, toggleTodo, deleteTodo, editTodo }) {
           type="text"
           value={newTask}
           onChange={handleEditChange}
-          className="edit-input"
+          className="input__lg"
         />
         <button type="submit" className="btn btn__primary">
           Save
@@ -45,6 +46,7 @@ function Todo({ todo, toggleTodo, deleteTodo, editTodo }) {
     editingContent = <label className="todoLabel">{todo.task}</label>;
   }
 
+  //* function to appear/disappear the edit button
   let editButton;
   if (!isEditing) {
     editButton = (
