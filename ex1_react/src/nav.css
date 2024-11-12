@@ -1,0 +1,11 @@
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.navLink {
+  background-color: black;
+  padding: 8px;
+  color: white;
+}
