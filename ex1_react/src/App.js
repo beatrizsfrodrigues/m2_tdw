@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Ex1 from "./ex1/App.js";
 import Ex2 from "./ex2/App.js";
 import Ex3 from "./ex3/App.js";
+import { Provider } from "react-redux";
+import { store } from "./ex3/redux/store";
 import "./nav.css";
 
 export default function App() {
@@ -33,7 +35,14 @@ export default function App() {
           <Route path="/">
             <Route path="/" element={<Ex1 />} />
             <Route path="/ex2" element={<Ex2 />} />
-            <Route path="/ex3" element={<Ex3 />} />
+            <Route
+              path="/ex3"
+              element={
+                <Provider store={store}>
+                  <Ex3 />
+                </Provider>
+              }
+            />
           </Route>
         </Routes>
       </div>

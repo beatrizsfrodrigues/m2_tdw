@@ -1,26 +1,57 @@
-import React, { useState } from "react";
+import React from "react";
 import "../ex3.css";
+import { useSelector, useDispatch } from "react-redux";
+import { addMoney, removeMoney } from "./redux/balanceSlice";
 
 function App() {
-  const [money, setMoney] = useState(1000);
+  //   const [money, setMoney] = useState(1000);
 
-  function addMoney(deposit) {
-    setMoney((prevMoney) => {
-      return prevMoney + deposit;
-    });
-  }
+  //   function addMoney(deposit) {
+  //     setMoney((prevMoney) => {
+  //       return prevMoney + deposit;
+  //     });
+  //   }
 
-  function removeMoney(withdrawal) {
-    setMoney((prevMoney) => {
-      return prevMoney - withdrawal;
-    });
-  }
+  //   function removeMoney(withdrawal) {
+  //     setMoney((prevMoney) => {
+  //       return prevMoney - withdrawal;
+  //     });
+  //   }
+
+  //   function add() {
+  //     const inputValue = document.getElementById("inputMoney").value;
+  //     const depositAmount = Number(inputValue);
+  //     if (!isNaN(depositAmount) && depositAmount > 0) {
+  //       addMoney(depositAmount);
+  //       document.getElementById("inputMoney").value = "";
+  //     } else {
+  //       console.log("Please enter a valid number.");
+  //     }
+  //   }
+
+  //   function remove() {
+  //     const inputValue = document.getElementById("inputMoney").value;
+  //     const withdrawalAmount = Number(inputValue);
+  //     if (
+  //       !isNaN(withdrawalAmount) &&
+  //       withdrawalAmount > 0 &&
+  //       withdrawalAmount <= money
+  //     ) {
+  //       removeMoney(withdrawalAmount);
+  //       document.getElementById("inputMoney").value = "";
+  //     } else {
+  //       console.log("Please enter a valid number.");
+  //     }
+  //   }
+
+  const money = useSelector((state) => state.money.balance);
+
+  const dispatch = useDispatch();
 
   function add() {
-    const inputValue = document.getElementById("inputMoney").value;
-    const depositAmount = Number(inputValue);
-    if (!isNaN(depositAmount) && depositAmount > 0) {
-      addMoney(depositAmount);
+    const inputValue = Number(document.getElementById("inputMoney").value);
+    if (!isNaN(inputValue) && inputValue > 0) {
+      dispatch(addMoney(inputValue));
       document.getElementById("inputMoney").value = "";
     } else {
       console.log("Please enter a valid number.");
@@ -28,14 +59,9 @@ function App() {
   }
 
   function remove() {
-    const inputValue = document.getElementById("inputMoney").value;
-    const withdrawalAmount = Number(inputValue);
-    if (
-      !isNaN(withdrawalAmount) &&
-      withdrawalAmount > 0 &&
-      withdrawalAmount <= money
-    ) {
-      removeMoney(withdrawalAmount);
+    const inputValue = Number(document.getElementById("inputMoney").value);
+    if (!isNaN(inputValue) && inputValue > 0 && inputValue <= money) {
+      dispatch(removeMoney(inputValue));
       document.getElementById("inputMoney").value = "";
     } else {
       console.log("Please enter a valid number.");
