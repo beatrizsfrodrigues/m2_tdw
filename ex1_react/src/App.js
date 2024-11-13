@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Ex1 from "./ex1/App.js";
 import Ex2 from "./ex2/App.js";
+import Ex3 from "./ex3/App.js";
 import "./nav.css";
 
 export default function App() {
@@ -20,6 +21,11 @@ export default function App() {
                 Ex2
               </Link>
             </li>
+            <li>
+              <Link className="navLink" to="/ex3">
+                Ex3
+              </Link>
+            </li>
           </ul>
         </nav>
 
@@ -27,6 +33,7 @@ export default function App() {
           <Route path="/">
             <Route path="/" element={<Ex1 />} />
             <Route path="/ex2" element={<Ex2 />} />
+            <Route path="/ex3" element={<Ex3 />} />
           </Route>
         </Routes>
       </div>

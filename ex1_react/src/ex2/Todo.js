@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 
@@ -7,7 +7,6 @@ const Button = styled.button`
   border-radius: 3px;
   border: 2px solid #bf4f74;
   color: #bf4f74;
-  margin: 0 1em;
   padding: 0.25em 1em;
   cursor: pointer;
 
@@ -97,7 +96,7 @@ function Todo({ todo, toggleTodo, deleteTodo, editTodo }) {
 
 Todo.propTypes = {
   todo: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     task: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
   }).isRequired,
