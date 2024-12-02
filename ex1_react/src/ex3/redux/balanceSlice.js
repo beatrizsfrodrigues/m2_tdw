@@ -5,10 +5,22 @@ const balanceSlice = createSlice({
   initialState: { balance: 1000 },
   reducers: {
     addMoney: (state, action) => {
-      state.balance += action.payload; //& action.payload: Used to pass the deposit or withdrawal amount to the reducers.
+      if (!isNaN(action.payload) && action.payload > 0) {
+        state.balance += action.payload; //& money i want to deposit
+      } else {
+        alert("Please enter a valid number.");
+      }
     },
     removeMoney: (state, action) => {
-      state.balance -= action.payload;
+      if (
+        !isNaN(action.payload) &&
+        action.payload > 0 &&
+        action.payload <= state.balance
+      ) {
+        state.balance -= action.payload;
+      } else {
+        alert("Please enter a valid number.");
+      }
     },
   },
 });

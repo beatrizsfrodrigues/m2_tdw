@@ -49,23 +49,13 @@ function App() {
   const dispatch = useDispatch();
 
   function add() {
-    const inputValue = Number(document.getElementById("inputMoney").value);
-    if (!isNaN(inputValue) && inputValue > 0) {
-      dispatch(addMoney(inputValue));
-      document.getElementById("inputMoney").value = "";
-    } else {
-      console.log("Please enter a valid number.");
-    }
+    dispatch(addMoney(Number(document.getElementById("inputMoney").value)));
+    document.getElementById("inputMoney").value = "";
   }
 
   function remove() {
-    const inputValue = Number(document.getElementById("inputMoney").value);
-    if (!isNaN(inputValue) && inputValue > 0 && inputValue <= money) {
-      dispatch(removeMoney(inputValue));
-      document.getElementById("inputMoney").value = "";
-    } else {
-      console.log("Please enter a valid number.");
-    }
+    dispatch(removeMoney(Number(document.getElementById("inputMoney").value))); //& dispatch send an action to redux store
+    document.getElementById("inputMoney").value = "";
   }
 
   return (
